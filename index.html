@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MM8108 Wi-Fi HaLow + Raspberry Pi Zero 2W — SDIO Interface</title>
+<style>
+* {margin:0;padding:0;box-sizing:border-box}
+body {font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#0f172a;color:#e2e8f0;line-height:1.6}
+.container {max-width:960px;margin:0 auto;padding:20px}
+h1 {color:#f472b6;font-size:1.8rem;margin-bottom:4px}
+h2 {color:#f472b6;font-size:1.3rem;margin:28px 0 12px;border-bottom:1px solid #334155;padding-bottom:6px}
+h3 {color:#93c5fd;font-size:1.05rem;margin:18px 0 8px}
+p,li {color:#cbd5e1;margin-bottom:6px}
+a {color:#38bdf8;text-decoration:none}
+a:hover {text-decoration:underline}
+code {background:#1e293b;padding:2px 6px;border-radius:4px;font-size:.9em;color:#a5b4fc}
+pre {background:#1e293b;padding:12px 16px;border-radius:8px;overflow-x:auto;font-size:.9em;border:1px solid #334155;margin:8px 0}
+.tag {display:inline-block;background:#1e3a5f;color:#93c5fd;padding:2px 10px;border-radius:12px;font-size:.8em;margin:2px}
+.warn {background:#451a1a;border-left:3px solid #f87171;padding:10px 16px;border-radius:4px;margin:12px 0}
+.info {background:#1a1a3e;border-left:3px solid #38bdf8;padding:10px 16px;border-radius:4px;margin:12px 0}
+table {width:100%;border-collapse:collapse;margin:12px 0}
+th,td {border:1px solid #334155;padding:8px 12px;text-align:left}
+th {background:#1e293b;color:#93c5fd;font-size:.9em}
+td {font-size:.9em}
+.schematic {width:100%;max-width:100%;border-radius:8px;border:1px solid #334155;margin:12px 0}
+.btn {display:inline-block;background:#2563eb;color:#fff;padding:8px 20px;border-radius:6px;font-weight:600;margin:4px 4px 4px 0}
+.btn:hover {background:#1d4ed8;text-decoration:none}
+.btn-github {background:#1e293b;border:1px solid #475569}
+.btn-github:hover {background:#334155}
+ul,ol {padding-left:24px;margin:6px 0 12px}
+.conn-map td:first-child {font-weight:600;color:#38bdf8}
+.footer {margin-top:40px;padding-top:16px;border-top:1px solid #334155;font-size:.85em;color:#64748b}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>MM8108 Wi-Fi HaLow Module + Raspberry Pi Zero 2W</h1>
+<p>SDIO host interface schematic, pin mapping, and driver setup for the <strong>Morse Micro MM8108-MF15457</strong> module connected to a <strong>Raspberry Pi Zero 2W</strong> via the 40-pin GPIO header.</p>
+
+<div class="warn">
+<strong>⚠️ Known conflict:</strong> The RPi Zero 2W's onboard CYW43455 Wi-Fi/Bluetooth also uses the SDIO bus (GPIO 22–27). These two can't coexist. You <em>must</em> disable the onboard Wi-Fi via <code>dtoverlay=disable-wifi</code> in config.txt.
+</div>
+
+<h2>Schematic Diagram</h2>
+<img src="mm8108-pi-schematic.svg" alt="MM8108 to RPi Zero 2W SDIO Schematic" class="schematic" loading="lazy">
+
+<p><a href="mm8108-pi-schematic.svg" target="_blank">Open full-size SVG ↗</a></p>
+
+<h2>Pin Mapping</h2>
+
+<h3>MM8108 Module (38-pin LGA) → Pi GPIO Header</h3>
+<p>All signals are 3.3V CMOS logic — no level shifting required.</p>
+
+<table class="conn-map">
+<thead><tr><th>Signal</th><th>MM8108 Pin</th><th>Pi GPIO</th><th>Pi Header Pin</th><th>Direction</th><th>Pull-up</th></tr></thead>
+<tbody>
+<tr><td style="color:#38bdf8">SDIO_CLK</td><td>P17</td><td>GPIO22</td><td>P15</td><td>→ Module</td><td>47 kΩ → 3.3V</td></tr>
+<tr><td style="color:#38bdf8">SDIO_CMD</td><td>P16</td><td>GPIO23</td><td>P16</td><td>↔</td><td>10 kΩ → 3.3V</td></tr>
+<tr><td style="color:#38bdf8">SDIO_D0</td><td>P12</td><td>GPIO24</td><td>P18</td><td>↔</td><td>47 kΩ → 3.3V</td></tr>
+<tr><td style="color:#38bdf8">SDIO_D1</td><td>P14</td><td>GPIO25</td><td>P22</td><td>↔</td><td>47 kΩ → 3.3V</td></tr>
+<tr><td style="color:#38bdf8">SDIO_D2</td><td>P15</td><td>GPIO26</td><td>P37</td><td>↔</td><td>47 kΩ → 3.3V</td></tr>
+<tr><td style="color:#38bdf8">SDIO_D3</td><td>P13</td><td>GPIO27</td><td>P13</td><td>↔</td><td>47 kΩ → 3.3V</td></tr>
+<tr><td style="color:#a78bfa">RESET_N</td><td>P6</td><td>GPIO17</td><td>P11</td><td>→ Module</td><td>—</td></tr>
+<tr><td style="color:#a78bfa">WAKE</td><td>P7</td><td>GPIO18</td><td>P12</td><td>→ Module</td><td>—</td></tr>
+<tr><td style="color:#a78bfa">BUSY</td><td>P8</td><td>GPIO21</td><td>P40</td><td>← Module</td><td>—</td></tr>
+</tbody>
+</table>
+
+<h3>Power</h3>
+<table>
+<thead><tr><th>Module Pin</th><th>Voltage</th><th>Connect To</th><th>Decoupling</th></tr></thead>
+<tbody>
+<tr><td>VBAT (P1)</td><td>3.0–3.6 V</td><td>Pi 3.3V rail (P1 or P17)</td><td>10 µF + 0.1 µF MLCC</td></tr>
+<tr><td>VBAT_TX (P2)</td><td>3.0–3.6 V</td><td>Pi 3.3V rail</td><td>10 µF + 0.1 µF MLCC</td></tr>
+<tr><td>VDDIO (P3)</td><td>2.25–3.6 V</td><td>Pi 3.3V rail (same as VBAT)</td><td>10 µF + 0.1 µF MLCC</td></tr>
+<tr><td>GND (P4, P5)</td><td>—</td><td>Pi GND</td><td>—</td></tr>
+</tbody>
+</table>
+
+<div class="info">
+<strong>ℹ️ VDDIO constraint:</strong> VDDIO voltage must <em>never exceed</em> VBAT. The simplest approach: tie all three (VBAT, VBAT_TX, VDDIO) to the Pi's 3.3V rail.
+</div>
+
+<h2>config.txt Setup</h2>
+<p>Add these lines to <code>/boot/config.txt</code> on the Pi's SD card:</p>
+<pre># Disable onboard Wi-Fi/BT (conflicts with external SDIO)
+dtoverlay=disable-wifi
+
+# Enable SDIO on GPIO22-27 (Arasan eMMC controller, 4-bit mode)
+dtoverlay=sdio,poll_once=off,bus_width=4</pre>
+
+<p>Alternatively, if you only need 1-bit SDIO (fewer wires):</p>
+<pre>dtoverlay=sdio,poll_once=off,bus_width=1,gpios_22_25</pre>
+
+<h2>Software — Morse Micro Linux Driver</h2>
+
+<p>The MM8108 requires the <strong>Morse Micro Linux driver</strong> and matching <strong>firmware binaries</strong>.</p>
+
+<h3>Driver Repository</h3>
+<pre>git clone https://github.com/MorseMicro/morse_driver.git
+cd morse_driver
+git checkout # pick a release tag, e.g. rel_1_16_4
+
+# Build for the Pi (cross-compile from x86)
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- \
+  KERNEL_SRC=/path/to/rpi-kernel \
+  CONFIG_WLAN_VENDOR_MORSE=m \
+  CONFIG_MORSE_SDIO=y \
+  CONFIG_MORSE_USER_ACCESS=y</pre>
+
+<p>This produces <code>morse.ko</code> and <code>dot11ah.ko</code>. Install them into the Pi's <code>/lib/modules/</code>.</p>
+
+<h3>Firmware Binaries</h3>
+<pre>git clone https://github.com/MorseMicro/morse-firmware.git
+cd morse-firmware
+make install            # Installs to $DESTDIR/lib/firmware/morse/
+# Or manually copy to /lib/firmware/morse/ on the Pi</pre>
+
+<h3>Quick Links</h3>
+<p>
+<a class="btn" href="https://github.com/MorseMicro/morse_driver" target="_blank">🐙 morse_driver →</a>
+<a class="btn" href="https://github.com/MorseMicro/morse-firmware" target="_blank">🐙 morse-firmware →</a>
+<a class="btn" href="https://github.com/MorseMicro" target="_blank">🐙 Morse Micro GitHub →</a>
+<a class="btn btn-github" href="https://github.com/MorseMicro/hostap" target="_blank">hostap (HaLow) →</a>
+<a class="btn btn-github" href="https://community.morsemicro.com/" target="_blank">Morse Community →</a>
+</p>
+
+<h3>Driver Compilation Reference</h3>
+<pre>make \
+  KERNEL_SRC=../linux \
+  CONFIG_WLAN_VENDOR_MORSE=m \
+  CONFIG_MORSE_SDIO=y \
+  CONFIG_MORSE_USER_ACCESS=y \
+  CONFIG_MORSE_VENDOR_COMMAND=y</pre>
+
+<p>Kconfig options:</p>
+<ul>
+<li><code>CONFIG_MORSE_SDIO=y</code> — SDIO host interface (required)</li>
+<li><code>CONFIG_MORSE_USER_ACCESS=y</code> — userspace CLI access (recommended)</li>
+<li><code>CONFIG_MORSE_VENDOR_COMMAND=y</code> — vendor-specific nl80211 commands</li>
+</ul>
+
+<h2>PCB Layout Notes</h2>
+<ul>
+<li>Route SDIO traces as a matched-length group — especially CLK. Keep stub lengths minimal.</li>
+<li>Keep total trace length from Pi header to module under 100 mm.</li>
+<li>Avoid vias on SDIO_CLK if possible.</li>
+<li>Place decoupling caps (10 µF + 0.1 µF) within 5 mm of each power pin.</li>
+<li>Antenna trace: 50 Ω impedance-controlled to a U.FL / IPEX connector. Keep ground plane cutouts per the module's antenna layout guidelines.</li>
+<li>Series termination resistors (22 Ω) on CLK and DATA lines can help with signal integrity on longer runs.</li>
+</ul>
+
+<h2>Resources</h2>
+<ul>
+<li><a href="https://www.morsemicro.com/resources/datasheets/modules/MM8108-MF15457_Data_Sheet.pdf" target="_blank">MM8108-MF15457 Datasheet (Morse Micro — login may be required)</a></li>
+<li><a href="https://github.com/MorseMicro/morse_driver" target="_blank">Morse Micro Linux Driver — GitHub</a></li>
+<li><a href="https://github.com/MorseMicro/morse-firmware" target="_blank">Morse Micro Firmware Binaries — GitHub</a></li>
+<li><a href="https://community.morsemicro.com/" target="_blank">Morse Micro Community Forum</a></li>
+<li><a href="https://www.mouser.com/ProductDetail/Morse-Micro/MM8108-MF15457" target="_blank">MM8108-MF15457 on Mouser</a></li>
+<li><a href="https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#gpio" target="_blank">Raspberry Pi GPIO Documentation</a></li>
+<li><a href="https://pinout.xyz" target="_blank">pinout.xyz — Interactive RPi GPIO reference</a></li>
+</ul>
+
+<div class="footer">
+Created by Claw 🦀 · Source available at <a href="https://github.com/claw7891/mm8108-pi-sdio">github.com/claw7891/mm8108-pi-sdio</a>
+</div>
+
+</div>
+</body>
+</html>
