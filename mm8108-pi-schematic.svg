@@ -1,223 +1,227 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 850" width="100%" height="100%" style="background:#111827;font-family:Consolas,'Courier New',monospace">
-<defs><style>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 960" width="100%" height="100%" style="background:#0f172a;font-family:Consolas,'Courier New',monospace">
+<defs>
+<marker id="dotM" viewBox="0 0 6 6" refX="3" refY="3"><circle cx="3" cy="3" r="2.5" fill="#38bdf8"/></marker>
+<marker id="dotP" viewBox="0 0 6 6" refX="3" refY="3"><circle cx="3" cy="3" r="2.5" fill="#a78bfa"/></marker>
+<marker id="dotR" viewBox="0 0 6 6" refX="3" refY="3"><circle cx="3" cy="3" r="2.5" fill="#f87171"/></marker>
+<style>
 .box{fill:#1e293b;stroke:#475569;stroke-width:2;rx:8}
 .title{fill:#f472b6;font-size:20px;font-weight:bold;text-anchor:middle}
 .sub{fill:#94a3b8;font-size:13px;text-anchor:middle}
 .sec-title{fill:#f472b6;font-size:15px;font-weight:bold}
-.wire{fill:none;stroke:#38bdf8;stroke-width:2}
-.pin{font-size:12px;fill:#e2e8f0;dominant-baseline:middle}
-.net{font-size:11px;fill:#fbbf24;text-anchor:end;dominant-baseline:middle}
-.sig{font-size:11px;fill:#e2e8f0;dominant-baseline:middle}
-.power{font-size:10px;fill:#fda4af;font-style:italic}
-.gnd{font-size:10px;fill:#fda4af}
+.wire{fill:none;stroke:#38bdf8;stroke-width:2.5}
+.wire-p{fill:none;stroke:#f87171;stroke-width:2.5}
+.wire-c{fill:none;stroke:#a78bfa;stroke-width:2.5}
+.pin-label{font-size:12px;fill:#e2e8f0;dominant-baseline:middle}
+.pin-num{font-size:10px;fill:#fbbf24;text-anchor:end;dominant-baseline:middle}
+.pi-label{font-size:12px;fill:#e2e8f0;dominant-baseline:middle}
+.pi-num{font-size:10px;fill:#fbbf24;dominant-baseline:middle}
+.pi-gpio{font-size:10px;fill:#64748b;font-style:italic;dominant-baseline:middle}
+.sdio-tag{font-size:10px;fill:#38bdf8;dominant-baseline:middle;text-anchor:middle;font-weight:bold}
+.ctrl-tag{font-size:10px;fill:#a78bfa;dominant-baseline:middle;text-anchor:middle;font-weight:bold}
+.pullup{font-size:9px;fill:#7dd3fc;font-style:italic}
 .note{font-size:11px;fill:#cbd5e1}
-.pullup{font-size:9px;fill:#93c5fd;font-style:italic}
+.power-tag{font-size:10px;fill:#fca5a5;text-anchor:middle;font-weight:bold}
+.gnd-tag{font-size:10px;fill:#fca5a5;text-anchor:middle}
 </style></defs>
-<rect width="100%" height="100%" fill="#111827"/>
-<text x="550" y="30" class="title">MM8108 Wi-Fi HaLow Module → Raspberry Pi Zero 2W  (SDIO Interface)</text>
-<text x="550" y="52" class="sub">4-bit SDIO Mode via GPIO 22-27  |  40-pin GPIO Header  |  config.txt: dtoverlay=sdio,bus_width=4</text>
+<rect width="100%" height="100%" fill="#0f172a"/>
 
-<rect x="50" y="80" width="260" height="680" class="box"/>
-<text x="62" y="102" class="sec-title">U1 — Morse Micro MM8108-MF15457</text>
-<text x="62" y="120" class="note">38-pin LGA Module  (VBAT=3.3V, VDDIO=3.3V)</text>
-<line x1="310" y1="140" x2="325" y2="140" class="wire" stroke="#fda4af"/>
-<circle cx="317" cy="140" r="2.5" fill="#fda4af"/>
-<text x="330" y="144" class="pin" fill="#fda4af">VBAT</text>
-<text x="305" y="144" class="net" fill="#fda4af">P1</text>
-<line x1="310" y1="162" x2="325" y2="162" class="wire" stroke="#fda4af"/>
-<circle cx="317" cy="162" r="2.5" fill="#fda4af"/>
-<text x="330" y="166" class="pin" fill="#fda4af">VBAT_TX</text>
-<text x="305" y="166" class="net" fill="#fda4af">P2</text>
-<line x1="310" y1="184" x2="325" y2="184" class="wire" stroke="#fda4af"/>
-<circle cx="317" cy="184" r="2.5" fill="#fda4af"/>
-<text x="330" y="188" class="pin" fill="#fda4af">VDDIO</text>
-<text x="305" y="188" class="net" fill="#fda4af">P3</text>
-<line x1="310" y1="210" x2="325" y2="210" class="wire" stroke="#fda4af"/>
-<circle cx="317" cy="210" r="2.5" fill="#fda4af"/>
-<text x="330" y="214" class="pin" fill="#fda4af">GND</text>
-<text x="305" y="214" class="net" fill="#fda4af">P4</text>
-<line x1="310" y1="232" x2="325" y2="232" class="wire" stroke="#fda4af"/>
-<circle cx="317" cy="232" r="2.5" fill="#fda4af"/>
-<text x="330" y="236" class="pin" fill="#fda4af">GND</text>
-<text x="305" y="236" class="net" fill="#fda4af">P5</text>
-<line x1="310" y1="258" x2="325" y2="258" class="wire" stroke="#a78bfa"/>
-<circle cx="317" cy="258" r="2.5" fill="#a78bfa"/>
-<text x="330" y="262" class="pin" fill="#a78bfa">RESET_N</text>
-<text x="305" y="262" class="net" fill="#a78bfa">P6</text>
-<line x1="310" y1="280" x2="325" y2="280" class="wire" stroke="#a78bfa"/>
-<circle cx="317" cy="280" r="2.5" fill="#a78bfa"/>
-<text x="330" y="284" class="pin" fill="#a78bfa">WAKE</text>
-<text x="305" y="284" class="net" fill="#a78bfa">P7</text>
-<line x1="310" y1="302" x2="325" y2="302" class="wire" stroke="#a78bfa"/>
-<circle cx="317" cy="302" r="2.5" fill="#a78bfa"/>
-<text x="330" y="306" class="pin" fill="#a78bfa">BUSY</text>
-<text x="305" y="306" class="net" fill="#a78bfa">P8</text>
-<line x1="310" y1="350" x2="325" y2="350" class="wire" stroke="#38bdf8"/>
-<circle cx="317" cy="350" r="2.5" fill="#38bdf8"/>
-<text x="330" y="354" class="pin" fill="#38bdf8">SDIO_D0</text>
-<text x="305" y="354" class="net" fill="#38bdf8">P12</text>
-<line x1="310" y1="372" x2="325" y2="372" class="wire" stroke="#38bdf8"/>
-<circle cx="317" cy="372" r="2.5" fill="#38bdf8"/>
-<text x="330" y="376" class="pin" fill="#38bdf8">SDIO_D3</text>
-<text x="305" y="376" class="net" fill="#38bdf8">P13</text>
-<line x1="310" y1="394" x2="325" y2="394" class="wire" stroke="#38bdf8"/>
-<circle cx="317" cy="394" r="2.5" fill="#38bdf8"/>
-<text x="330" y="398" class="pin" fill="#38bdf8">SDIO_D1</text>
-<text x="305" y="398" class="net" fill="#38bdf8">P14</text>
-<line x1="310" y1="416" x2="325" y2="416" class="wire" stroke="#38bdf8"/>
-<circle cx="317" cy="416" r="2.5" fill="#38bdf8"/>
-<text x="330" y="420" class="pin" fill="#38bdf8">SDIO_D2</text>
-<text x="305" y="420" class="net" fill="#38bdf8">P15</text>
-<line x1="310" y1="438" x2="325" y2="438" class="wire" stroke="#38bdf8"/>
-<circle cx="317" cy="438" r="2.5" fill="#38bdf8"/>
-<text x="330" y="442" class="pin" fill="#38bdf8">SDIO_CMD</text>
-<text x="305" y="442" class="net" fill="#38bdf8">P16</text>
-<line x1="310" y1="460" x2="325" y2="460" class="wire" stroke="#38bdf8"/>
-<circle cx="317" cy="460" r="2.5" fill="#38bdf8"/>
-<text x="330" y="464" class="pin" fill="#38bdf8">SDIO_CLK</text>
-<text x="305" y="464" class="net" fill="#38bdf8">P17</text>
-<line x1="310" y1="500" x2="325" y2="500" class="wire" stroke="#a78bfa"/>
-<circle cx="317" cy="500" r="2.5" fill="#a78bfa"/>
-<text x="330" y="504" class="pin" fill="#a78bfa">GPIO_0</text>
-<text x="305" y="504" class="net" fill="#a78bfa">P20</text>
-<line x1="310" y1="522" x2="325" y2="522" class="wire" stroke="#a78bfa"/>
-<circle cx="317" cy="522" r="2.5" fill="#a78bfa"/>
-<text x="330" y="526" class="pin" fill="#a78bfa">GPIO_1</text>
-<text x="305" y="526" class="net" fill="#a78bfa">P21</text>
-<rect x="770" y="80" width="290" height="680" class="box"/>
-<text x="782" y="102" class="sec-title">J1 — RPi Zero 2W GPIO Header</text>
-<text x="782" y="120" class="note">40-pin header  (physical pin → BCM GPIO)</text>
-<line x1="770" y1="140" x2="755" y2="140" class="wire" stroke="#fda4af"/>
-<circle cx="763" cy="140" r="2.5" fill="#fda4af"/>
-<text x="750" y="144" class="net" fill="#fda4af">P1</text>
-<text x="780" y="144" class="pin" fill="#fda4af">3.3V</text>
-<line x1="770" y1="162" x2="755" y2="162" class="wire" stroke="#fda4af"/>
-<circle cx="763" cy="162" r="2.5" fill="#fda4af"/>
-<text x="750" y="166" class="net" fill="#fda4af">P17</text>
-<text x="780" y="166" class="pin" fill="#fda4af">3.3V</text>
-<line x1="770" y1="210" x2="755" y2="210" class="wire" stroke="#fda4af"/>
-<circle cx="763" cy="210" r="2.5" fill="#fda4af"/>
-<text x="750" y="214" class="net" fill="#fda4af">P6</text>
-<text x="780" y="214" class="pin" fill="#fda4af">GND</text>
-<line x1="770" y1="232" x2="755" y2="232" class="wire" stroke="#fda4af"/>
-<circle cx="763" cy="232" r="2.5" fill="#fda4af"/>
-<text x="750" y="236" class="net" fill="#fda4af">P14</text>
-<text x="780" y="236" class="pin" fill="#fda4af">GND</text>
-<line x1="770" y1="258" x2="755" y2="258" class="wire" stroke="#fda4af"/>
-<circle cx="763" cy="258" r="2.5" fill="#fda4af"/>
-<text x="750" y="262" class="net" fill="#fda4af">P20</text>
-<text x="780" y="262" class="pin" fill="#fda4af">GND</text>
-<line x1="770" y1="280" x2="755" y2="280" class="wire" stroke="#fda4af"/>
-<circle cx="763" cy="280" r="2.5" fill="#fda4af"/>
-<text x="750" y="284" class="net" fill="#fda4af">P25</text>
-<text x="780" y="284" class="pin" fill="#fda4af">GND</text>
-<line x1="770" y1="302" x2="755" y2="302" class="wire" stroke="#fda4af"/>
-<circle cx="763" cy="302" r="2.5" fill="#fda4af"/>
-<text x="750" y="306" class="net" fill="#fda4af">P30</text>
-<text x="780" y="306" class="pin" fill="#fda4af">GND</text>
-<line x1="770" y1="340" x2="755" y2="340" class="wire" stroke="#a78bfa"/>
-<circle cx="763" cy="340" r="2.5" fill="#a78bfa"/>
-<text x="750" y="344" class="net" fill="#a78bfa">P11</text>
-<text x="780" y="344" class="pin" fill="#a78bfa">RESET_N</text>
-<text x="955" y="344" class="sig" fill="#64748b">(GPIO17)</text>
-<line x1="770" y1="362" x2="755" y2="362" class="wire" stroke="#a78bfa"/>
-<circle cx="763" cy="362" r="2.5" fill="#a78bfa"/>
-<text x="750" y="366" class="net" fill="#a78bfa">P12</text>
-<text x="780" y="366" class="pin" fill="#a78bfa">WAKE</text>
-<text x="955" y="366" class="sig" fill="#64748b">(GPIO18)</text>
-<line x1="770" y1="384" x2="755" y2="384" class="wire" stroke="#a78bfa"/>
-<circle cx="763" cy="384" r="2.5" fill="#a78bfa"/>
-<text x="750" y="388" class="net" fill="#a78bfa">P40</text>
-<text x="780" y="388" class="pin" fill="#a78bfa">BUSY</text>
-<text x="955" y="388" class="sig" fill="#64748b">(GPIO21)</text>
-<line x1="770" y1="424" x2="755" y2="424" class="wire" stroke="#38bdf8"/>
-<circle cx="763" cy="424" r="2.5" fill="#38bdf8"/>
-<text x="750" y="428" class="net" fill="#38bdf8">P15</text>
-<text x="780" y="428" class="pin" fill="#38bdf8">SDIO_CLK (ALT3)</text>
-<text x="955" y="428" class="sig" fill="#64748b">(GPIO22)</text>
-<line x1="770" y1="446" x2="755" y2="446" class="wire" stroke="#38bdf8"/>
-<circle cx="763" cy="446" r="2.5" fill="#38bdf8"/>
-<text x="750" y="450" class="net" fill="#38bdf8">P16</text>
-<text x="780" y="450" class="pin" fill="#38bdf8">SDIO_CMD (ALT3)</text>
-<text x="955" y="450" class="sig" fill="#64748b">(GPIO23)</text>
-<line x1="770" y1="468" x2="755" y2="468" class="wire" stroke="#38bdf8"/>
-<circle cx="763" cy="468" r="2.5" fill="#38bdf8"/>
-<text x="750" y="472" class="net" fill="#38bdf8">P18</text>
-<text x="780" y="472" class="pin" fill="#38bdf8">SDIO_D0  (ALT3)</text>
-<text x="955" y="472" class="sig" fill="#64748b">(GPIO24)</text>
-<line x1="770" y1="490" x2="755" y2="490" class="wire" stroke="#38bdf8"/>
-<circle cx="763" cy="490" r="2.5" fill="#38bdf8"/>
-<text x="750" y="494" class="net" fill="#38bdf8">P22</text>
-<text x="780" y="494" class="pin" fill="#38bdf8">SDIO_D1  (ALT3)</text>
-<text x="955" y="494" class="sig" fill="#64748b">(GPIO25)</text>
-<line x1="770" y1="512" x2="755" y2="512" class="wire" stroke="#38bdf8"/>
-<circle cx="763" cy="512" r="2.5" fill="#38bdf8"/>
-<text x="750" y="516" class="net" fill="#38bdf8">P37</text>
-<text x="780" y="516" class="pin" fill="#38bdf8">SDIO_D2  (ALT3)</text>
-<text x="955" y="516" class="sig" fill="#64748b">(GPIO26)</text>
-<line x1="770" y1="534" x2="755" y2="534" class="wire" stroke="#38bdf8"/>
-<circle cx="763" cy="534" r="2.5" fill="#38bdf8"/>
-<text x="750" y="538" class="net" fill="#38bdf8">P13</text>
-<text x="780" y="538" class="pin" fill="#38bdf8">SDIO_D3  (ALT3)</text>
-<text x="955" y="538" class="sig" fill="#64748b">(GPIO27)</text>
-<line x1="325" y1="460" x2="540" y2="460" class="wire" stroke="#38bdf8"/>
-<line x1="540" y1="460" x2="540" y2="424" class="wire" stroke="#38bdf8"/>
-<line x1="540" y1="424" x2="755" y2="424" class="wire" stroke="#38bdf8"/>
-<circle cx="539" cy="460" r="1.5" fill="#38bdf8"/>
-<circle cx="539" cy="424" r="1.5" fill="#38bdf8"/>
-<text x="546" y="437" class="pullup">CLK</text>
-<line x1="325" y1="438" x2="540" y2="438" class="wire" stroke="#38bdf8"/>
-<line x1="540" y1="438" x2="540" y2="446" class="wire" stroke="#38bdf8"/>
-<line x1="540" y1="446" x2="755" y2="446" class="wire" stroke="#38bdf8"/>
-<circle cx="539" cy="438" r="1.5" fill="#38bdf8"/>
-<circle cx="539" cy="446" r="1.5" fill="#38bdf8"/>
-<text x="546" y="432" class="pullup">▲10kΩ→3.3V</text>
-<text x="546" y="459" class="pullup">CMD</text>
-<line x1="325" y1="350" x2="540" y2="350" class="wire" stroke="#38bdf8"/>
-<line x1="540" y1="350" x2="540" y2="468" class="wire" stroke="#38bdf8"/>
-<line x1="540" y1="468" x2="755" y2="468" class="wire" stroke="#38bdf8"/>
-<circle cx="539" cy="350" r="1.5" fill="#38bdf8"/>
-<circle cx="539" cy="468" r="1.5" fill="#38bdf8"/>
-<text x="546" y="344" class="pullup">▲47kΩ→3.3V</text>
-<line x1="325" y1="394" x2="540" y2="394" class="wire" stroke="#38bdf8"/>
-<line x1="540" y1="394" x2="540" y2="490" class="wire" stroke="#38bdf8"/>
-<line x1="540" y1="490" x2="755" y2="490" class="wire" stroke="#38bdf8"/>
-<circle cx="539" cy="394" r="1.5" fill="#38bdf8"/>
-<circle cx="539" cy="490" r="1.5" fill="#38bdf8"/>
-<text x="546" y="388" class="pullup">▲47kΩ→3.3V</text>
-<line x1="325" y1="416" x2="540" y2="416" class="wire" stroke="#38bdf8"/>
-<line x1="540" y1="416" x2="540" y2="512" class="wire" stroke="#38bdf8"/>
-<line x1="540" y1="512" x2="755" y2="512" class="wire" stroke="#38bdf8"/>
-<circle cx="539" cy="416" r="1.5" fill="#38bdf8"/>
-<circle cx="539" cy="512" r="1.5" fill="#38bdf8"/>
-<text x="546" y="410" class="pullup">▲47kΩ→3.3V</text>
-<line x1="325" y1="372" x2="540" y2="372" class="wire" stroke="#38bdf8"/>
-<line x1="540" y1="372" x2="540" y2="534" class="wire" stroke="#38bdf8"/>
-<line x1="540" y1="534" x2="755" y2="534" class="wire" stroke="#38bdf8"/>
-<circle cx="539" cy="372" r="1.5" fill="#38bdf8"/>
-<circle cx="539" cy="534" r="1.5" fill="#38bdf8"/>
-<text x="546" y="366" class="pullup">▲47kΩ→3.3V</text>
-<line x1="325" y1="258" x2="540" y2="258" class="wire" stroke="#a78bfa"/>
-<line x1="540" y1="258" x2="540" y2="340" class="wire" stroke="#a78bfa"/>
-<line x1="540" y1="340" x2="755" y2="340" class="wire" stroke="#a78bfa"/>
-<circle cx="539" cy="258" r="1.5" fill="#a78bfa"/>
-<circle cx="539" cy="340" r="1.5" fill="#a78bfa"/>
-<line x1="325" y1="280" x2="540" y2="280" class="wire" stroke="#a78bfa"/>
-<line x1="540" y1="280" x2="540" y2="362" class="wire" stroke="#a78bfa"/>
-<line x1="540" y1="362" x2="755" y2="362" class="wire" stroke="#a78bfa"/>
-<circle cx="539" cy="280" r="1.5" fill="#a78bfa"/>
-<circle cx="539" cy="362" r="1.5" fill="#a78bfa"/>
-<line x1="325" y1="302" x2="540" y2="302" class="wire" stroke="#a78bfa"/>
-<line x1="540" y1="302" x2="540" y2="384" class="wire" stroke="#a78bfa"/>
-<line x1="540" y1="384" x2="755" y2="384" class="wire" stroke="#a78bfa"/>
-<circle cx="539" cy="302" r="1.5" fill="#a78bfa"/>
-<circle cx="539" cy="384" r="1.5" fill="#a78bfa"/>
-<path d="M325,140 L540,140 L540,140 L755,140" class="wire" stroke="#fda4af"/>
-<text x="540" y="132" class="power" text-anchor="middle">3.3V Power Rail</text>
-<path d="M325,232 L540,232 L540,210 L755,210" class="wire" stroke="#fda4af"/>
-<text x="540" y="224" class="gnd" text-anchor="middle">GND</text>
-<rect x="30" y="770" width="1040" height="60" class="box" style="stroke:#fbbf24;fill:#1a1a2e"/>
-<text x="40" y="788" class="sec-title">NOTES:</text>
-<text x="40" y="806" class="note">SDIO pull-ups: CMD=10kΩ, DAT[0:3]=47kΩ, CLK=47kΩ to 3.3V  |  Decouple VBAT/VBAT_TX/VDDIO with 10µF+0.1µF MLCC</text>
-<text x="40" y="822" class="note">config.txt: dtoverlay=disable-wifi  dtoverlay=sdio,poll_once=off,bus_width=4  |  50Ω antenna trace  |  Keep SDIO traces &amp;lt;100mm</text>
+<text x="550" y="30" class="">MM8108 Wi-Fi HaLow Module  →  Raspberry Pi Zero 2W  (SDIO Interface)</text>
+<text x="550" y="52" class="sub">4-bit SDIO  ·  GPIO 22-27 ALT3  ·  40-pin GPIO Header  ·  config.txt: dtoverlay=sdio,poll_once=off,bus_width=4</text>
+<rect x="40" y="80" width="230" height="620" class="box"/>
+<text x="52" y="102" class="sec-title">U1 — MM8108-MF15457</text>
+<text x="52" y="120" class="note">38-pin LGA Module</text>
+<line x1="270" y1="130" x2="282" y2="130" class="wire-p"/>
+<circle cx="276" cy="130" r="3" fill="#f87171"/>
+<text x="265" y="130" class="pin-num">P1</text>
+<text x="288" y="130" class="pin-label" fill="#f87171">VBAT</text>
+<line x1="270" y1="160" x2="282" y2="160" class="wire-p"/>
+<circle cx="276" cy="160" r="3" fill="#f87171"/>
+<text x="265" y="160" class="pin-num">P2</text>
+<text x="288" y="160" class="pin-label" fill="#f87171">VBAT_TX</text>
+<line x1="270" y1="190" x2="282" y2="190" class="wire-p"/>
+<circle cx="276" cy="190" r="3" fill="#f87171"/>
+<text x="265" y="190" class="pin-num">P3</text>
+<text x="288" y="190" class="pin-label" fill="#f87171">VDDIO</text>
+<line x1="270" y1="235" x2="282" y2="235" class="wire-p"/>
+<circle cx="276" cy="235" r="3" fill="#f87171"/>
+<text x="265" y="235" class="pin-num">P4</text>
+<text x="288" y="235" class="pin-label" fill="#f87171">GND</text>
+<line x1="270" y1="265" x2="282" y2="265" class="wire-p"/>
+<circle cx="276" cy="265" r="3" fill="#f87171"/>
+<text x="265" y="265" class="pin-num">P5</text>
+<text x="288" y="265" class="pin-label" fill="#f87171">GND</text>
+<line x1="270" y1="320" x2="282" y2="320" class="wire-c"/>
+<circle cx="276" cy="320" r="3" fill="#a78bfa"/>
+<text x="265" y="320" class="pin-num">P6</text>
+<text x="288" y="320" class="pin-label" fill="#a78bfa">RESET_N</text>
+<line x1="270" y1="350" x2="282" y2="350" class="wire-c"/>
+<circle cx="276" cy="350" r="3" fill="#a78bfa"/>
+<text x="265" y="350" class="pin-num">P7</text>
+<text x="288" y="350" class="pin-label" fill="#a78bfa">WAKE</text>
+<line x1="270" y1="380" x2="282" y2="380" class="wire-c"/>
+<circle cx="276" cy="380" r="3" fill="#a78bfa"/>
+<text x="265" y="380" class="pin-num">P8</text>
+<text x="288" y="380" class="pin-label" fill="#a78bfa">BUSY</text>
+<line x1="270" y1="420" x2="282" y2="420" class="wire"/>
+<circle cx="276" cy="420" r="3" fill="#38bdf8"/>
+<text x="265" y="420" class="pin-num">P12</text>
+<text x="288" y="420" class="pin-label" fill="#38bdf8">SDIO_D0</text>
+<line x1="270" y1="450" x2="282" y2="450" class="wire"/>
+<circle cx="276" cy="450" r="3" fill="#38bdf8"/>
+<text x="265" y="450" class="pin-num">P13</text>
+<text x="288" y="450" class="pin-label" fill="#38bdf8">SDIO_D3</text>
+<line x1="270" y1="480" x2="282" y2="480" class="wire"/>
+<circle cx="276" cy="480" r="3" fill="#38bdf8"/>
+<text x="265" y="480" class="pin-num">P14</text>
+<text x="288" y="480" class="pin-label" fill="#38bdf8">SDIO_D1</text>
+<line x1="270" y1="510" x2="282" y2="510" class="wire"/>
+<circle cx="276" cy="510" r="3" fill="#38bdf8"/>
+<text x="265" y="510" class="pin-num">P15</text>
+<text x="288" y="510" class="pin-label" fill="#38bdf8">SDIO_D2</text>
+<line x1="270" y1="540" x2="282" y2="540" class="wire"/>
+<circle cx="276" cy="540" r="3" fill="#38bdf8"/>
+<text x="265" y="540" class="pin-num">P16</text>
+<text x="288" y="540" class="pin-label" fill="#38bdf8">SDIO_CMD</text>
+<line x1="270" y1="570" x2="282" y2="570" class="wire"/>
+<circle cx="276" cy="570" r="3" fill="#38bdf8"/>
+<text x="265" y="570" class="pin-num">P17</text>
+<text x="288" y="570" class="pin-label" fill="#38bdf8">SDIO_CLK</text>
+<line x1="270" y1="620" x2="282" y2="620" class="wire"/>
+<circle cx="276" cy="620" r="3" fill="#94a3b8"/>
+<text x="265" y="620" class="pin-num">P20</text>
+<text x="288" y="620" class="pin-label" fill="#94a3b8">GPIO_0</text>
+<line x1="270" y1="650" x2="282" y2="650" class="wire"/>
+<circle cx="276" cy="650" r="3" fill="#94a3b8"/>
+<text x="265" y="650" class="pin-num">P21</text>
+<text x="288" y="650" class="pin-label" fill="#94a3b8">GPIO_1</text>
+<rect x="730" y="80" width="320" height="620" class="box"/>
+<text x="742" y="102" class="sec-title">J1 — RPi Zero 2W GPIO Header</text>
+<text x="742" y="120" class="note">40-pin header  (physical pin / BCM GPIO)</text>
+<line x1="730" y1="130" x2="718" y2="130" class="wire-p"/>
+<circle cx="724" cy="130" r="3" fill="#f87171"/>
+<text x="738" y="130" class="pi-label" fill="#f87171">3.3V</text>
+<text x="745" y="130" class="pi-num">  P1</text>
+<line x1="730" y1="160" x2="718" y2="160" class="wire-p"/>
+<circle cx="724" cy="160" r="3" fill="#f87171"/>
+<text x="738" y="160" class="pi-label" fill="#f87171">3.3V</text>
+<text x="745" y="160" class="pi-num">  P17</text>
+<line x1="730" y1="190" x2="718" y2="190" class="wire-p"/>
+<circle cx="724" cy="190" r="3" fill="#f87171"/>
+<text x="738" y="190" class="pi-label" fill="#f87171">GND</text>
+<text x="745" y="190" class="pi-num">  P6</text>
+<line x1="730" y1="235" x2="718" y2="235" class="wire-p"/>
+<circle cx="724" cy="235" r="3" fill="#f87171"/>
+<text x="738" y="235" class="pi-label" fill="#f87171">GND</text>
+<text x="745" y="235" class="pi-num">  P14</text>
+<line x1="730" y1="265" x2="718" y2="265" class="wire-p"/>
+<circle cx="724" cy="265" r="3" fill="#f87171"/>
+<text x="738" y="265" class="pi-label" fill="#f87171">GND</text>
+<text x="745" y="265" class="pi-num">  P20</text>
+<line x1="730" y1="320" x2="718" y2="320" class="wire-c"/>
+<circle cx="724" cy="320" r="3" fill="#a78bfa"/>
+<text x="738" y="320" class="pi-label" fill="#a78bfa">RESET_N</text>
+<text x="745" y="320" class="pi-num">  P11</text>
+<text x="745" y="320" class="pi-gpio">  GPIO17</text>
+<line x1="730" y1="350" x2="718" y2="350" class="wire-c"/>
+<circle cx="724" cy="350" r="3" fill="#a78bfa"/>
+<text x="738" y="350" class="pi-label" fill="#a78bfa">WAKE</text>
+<text x="745" y="350" class="pi-num">  P12</text>
+<text x="745" y="350" class="pi-gpio">  GPIO18</text>
+<line x1="730" y1="380" x2="718" y2="380" class="wire-c"/>
+<circle cx="724" cy="380" r="3" fill="#a78bfa"/>
+<text x="738" y="380" class="pi-label" fill="#a78bfa">BUSY</text>
+<text x="745" y="380" class="pi-num">  P40</text>
+<text x="745" y="380" class="pi-gpio">  GPIO21</text>
+<line x1="730" y1="420" x2="718" y2="420" class="wire"/>
+<circle cx="724" cy="420" r="3" fill="#38bdf8"/>
+<text x="738" y="420" class="pi-label" fill="#38bdf8">SDIO_D0</text>
+<text x="745" y="420" class="pi-num">  P18</text>
+<text x="745" y="420" class="pi-gpio">  GPIO24</text>
+<line x1="730" y1="450" x2="718" y2="450" class="wire"/>
+<circle cx="724" cy="450" r="3" fill="#38bdf8"/>
+<text x="738" y="450" class="pi-label" fill="#38bdf8">SDIO_D3</text>
+<text x="745" y="450" class="pi-num">  P13</text>
+<text x="745" y="450" class="pi-gpio">  GPIO27</text>
+<line x1="730" y1="480" x2="718" y2="480" class="wire"/>
+<circle cx="724" cy="480" r="3" fill="#38bdf8"/>
+<text x="738" y="480" class="pi-label" fill="#38bdf8">SDIO_D1</text>
+<text x="745" y="480" class="pi-num">  P22</text>
+<text x="745" y="480" class="pi-gpio">  GPIO25</text>
+<line x1="730" y1="510" x2="718" y2="510" class="wire"/>
+<circle cx="724" cy="510" r="3" fill="#38bdf8"/>
+<text x="738" y="510" class="pi-label" fill="#38bdf8">SDIO_D2</text>
+<text x="745" y="510" class="pi-num">  P37</text>
+<text x="745" y="510" class="pi-gpio">  GPIO26</text>
+<line x1="730" y1="540" x2="718" y2="540" class="wire"/>
+<circle cx="724" cy="540" r="3" fill="#38bdf8"/>
+<text x="738" y="540" class="pi-label" fill="#38bdf8">SDIO_CMD</text>
+<text x="745" y="540" class="pi-num">  P16</text>
+<text x="745" y="540" class="pi-gpio">  GPIO23</text>
+<line x1="730" y1="570" x2="718" y2="570" class="wire"/>
+<circle cx="724" cy="570" r="3" fill="#38bdf8"/>
+<text x="738" y="570" class="pi-label" fill="#38bdf8">SDIO_CLK</text>
+<text x="745" y="570" class="pi-num">  P15</text>
+<text x="745" y="570" class="pi-gpio">  GPIO22</text>
+<path d="M282,130 L718,130" class="wire-p" style="stroke:#f87171;stroke-width:2.5;stroke-dasharray:6,3"/>
+<path d="M282,160 L718,160" class="wire-p" style="stroke:#f87171;stroke-width:2.5;stroke-dasharray:6,3"/>
+<path d="M282,190 L718,190" class="wire-p" style="stroke:#f87171;stroke-width:2.5;stroke-dasharray:6,3"/>
+<text x="500" y="182" class="power-tag">3.3V Power Rail</text>
+<path d="M282,265 L718,265" class="wire-p" style="stroke:#f87171;stroke-width:2.5;stroke-dasharray:6,3"/>
+<text x="500" y="257" class="gnd-tag">GND</text>
+<path d="M282,320 L718,320" class="wire-c" style="stroke:#a78bfa;stroke-width:2.5"/>
+<text x="500" y="314" class="ctrl-tag">▸</text>
+<text x="500" y="334" class="ctrl-tag">RESET_N</text>
+<path d="M282,350 L718,350" class="wire-c" style="stroke:#a78bfa;stroke-width:2.5"/>
+<text x="500" y="344" class="ctrl-tag">▸</text>
+<text x="500" y="364" class="ctrl-tag">WAKE</text>
+<path d="M282,380 L718,380" class="wire-c" style="stroke:#a78bfa;stroke-width:2.5"/>
+<text x="500" y="374" class="ctrl-tag">▸</text>
+<text x="500" y="394" class="ctrl-tag">BUSY</text>
+<path d="M282,420 L718,420" class="wire" style="stroke:#38bdf8;stroke-width:2.5"/>
+<text x="500" y="414" class="pullup" text-anchor="middle">▲ 47kΩ↑3.3V</text>
+<text x="500" y="434" class="sdio-tag">D0</text>
+<path d="M282,450 L718,450" class="wire" style="stroke:#38bdf8;stroke-width:2.5"/>
+<text x="500" y="444" class="pullup" text-anchor="middle">▲ 47kΩ↑3.3V</text>
+<text x="500" y="464" class="sdio-tag">D3</text>
+<path d="M282,480 L718,480" class="wire" style="stroke:#38bdf8;stroke-width:2.5"/>
+<text x="500" y="474" class="pullup" text-anchor="middle">▲ 47kΩ↑3.3V</text>
+<text x="500" y="494" class="sdio-tag">D1</text>
+<path d="M282,510 L718,510" class="wire" style="stroke:#38bdf8;stroke-width:2.5"/>
+<text x="500" y="504" class="pullup" text-anchor="middle">▲ 47kΩ↑3.3V</text>
+<text x="500" y="524" class="sdio-tag">D2</text>
+<path d="M282,540 L718,540" class="wire" style="stroke:#38bdf8;stroke-width:2.5"/>
+<text x="500" y="534" class="pullup" text-anchor="middle">▲ 10kΩ↑3.3V</text>
+<text x="500" y="554" class="sdio-tag">CMD</text>
+<path d="M282,570 L718,570" class="wire" style="stroke:#38bdf8;stroke-width:2.5"/>
+<text x="500" y="564" class="pullup" text-anchor="middle">▲ 47kΩ↑3.3V</text>
+<text x="500" y="584" class="sdio-tag">CLK</text>
+<line x1="277" y1="125" x2="723" y2="125" class="wire-p" style="stroke:#f87171;stroke-width:3"/>
+<line x1="460" y1="130" x2="460" y2="125" class="wire-p" style="stroke:#f87171;stroke-width:2;stroke-dasharray:4,2"/>
+<line x1="460" y1="160" x2="460" y2="125" class="wire-p" style="stroke:#f87171;stroke-width:2;stroke-dasharray:4,2"/>
+<line x1="460" y1="190" x2="460" y2="125" class="wire-p" style="stroke:#f87171;stroke-width:2;stroke-dasharray:4,2"/>
+<line x1="277" y1="220" x2="723" y2="220" class="wire-p" style="stroke:#f87171;stroke-width:3"/>
+<line x1="460" y1="265" x2="460" y2="220" class="wire-p" style="stroke:#f87171;stroke-width:2;stroke-dasharray:4,2"/>
+<line x1="540" y1="190" x2="540" y2="220" class="wire-p" style="stroke:#f87171;stroke-width:2;stroke-dasharray:4,2"/>
+<line x1="540" y1="235" x2="540" y2="220" class="wire-p" style="stroke:#f87171;stroke-width:2;stroke-dasharray:4,2"/>
+<line x1="540" y1="265" x2="540" y2="220" class="wire-p" style="stroke:#f87171;stroke-width:2;stroke-dasharray:4,2"/>
+<line x1="540" y1="130" x2="540" y2="125" class="wire-p" style="stroke:#f87171;stroke-width:2;stroke-dasharray:4,2"/>
+<line x1="540" y1="160" x2="540" y2="125" class="wire-p" style="stroke:#f87171;stroke-width:2;stroke-dasharray:4,2"/>
+<text x="300" y="120" class="note" fill="#f87171">C1</text>
+<text x="300" y="142" class="note" fill="#f87171">10µ+0.1µ</text>
+<text x="300" y="150" class="note" fill="#f87171">C1</text>
+<text x="300" y="172" class="note" fill="#f87171">10µ+0.1µ</text>
+<text x="300" y="180" class="note" fill="#f87171">C1</text>
+<text x="300" y="202" class="note" fill="#f87171">10µ+0.1µ</text>
+<rect x="30" y="730" width="1040" height="210" class="box" style="stroke:#fbbf24;fill:#1a1a2e"/>
+<text x="40" y="755" class="sec-title">NOTES:</text>
+<text x="40" y="777" class="note">1. SDIO pull-ups: CMD = 10 kΩ, DAT[0:3]/CLK = 47 kΩ, all to 3.3V VDDIO</text>
+<text x="40" y="793" class="note">2. config.txt:  dtoverlay=disable-wifi  dtoverlay=sdio,poll_once=off,bus_width=4</text>
+<text x="40" y="809" class="note">3. Decouple VBAT, VBAT_TX, VDDIO with 10 µF + 0.1 µF MLCC each, placed within 5 mm of pin</text>
+<text x="40" y="825" class="note">4. Antenna: 50 Ω impedance-controlled trace to U.FL connector; no stubs; follow module antenna keep-out</text>
+<text x="40" y="841" class="note">5. Keep SDIO traces under 100 mm, match lengths for CLK group, avoid vias on CLK</text>
+<text x="40" y="857" class="note">6. Series termination (22 Ω) on CLK/DATA can improve signal integrity on longer PCB traces</text>
+<text x="40" y="873" class="note">7. Driver: git clone https://github.com/MorseMicro/morse_driver.git  |  make CONFIG_MORSE_SDIO=y</text>
+<text x="40" y="889" class="note">8. Firmware: git clone https://github.com/MorseMicro/morse-firmware.git  |  install to /lib/firmware/morse/</text>
+<text x="40" y="905" class="note">9. VDDIO must never exceed VBAT — tie all to Pi 3.3V rail for simplest design</text>
+<text x="40" y="921" class="note">10. The Pi Zero 2W 40-pin header maps to GPIO 22-27 via ALT3 function (not ALT0, which is the internal SDIO).</text>
 </svg>
